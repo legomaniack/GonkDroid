@@ -20,7 +20,6 @@ client.on('message', message => {
             case 'gonk':
                 if (args.length < 1){
                     if (cmd === 'gonktts') {
-                        console.log('tts');
                         message.channel.send("Gonk!", {tts: true})
                             .then(message => console.log(`Sent TTS message: ${message.content}`))
                             .catch(console.error);
@@ -30,11 +29,9 @@ client.on('message', message => {
                             .catch(console.error);
                     }
                 } else {
-                    console.log("Begin gonk algorithm");
                     var words = [];
                     for (var i = 0, len = args.length; i < len; i++) {
                         if (args[i].length >= 4) words.push(args[i]);
-                        console.log('Adding word '+ args[i]);
                     }
                     if (words.length == 0) {
                         if (cmd === 'gonktts') {
@@ -65,11 +62,11 @@ client.on('message', message => {
                         newMessage[args.indexOf(word)] = newWord;
                         if (cmd === 'gonktts') {
                             message.channel.send(newMessage.join(" "), {tts:true})
-                                .then(message => console.log('Sent TTS message: ${message.content}'))
+                                .then(message => console.log(`Sent TTS message: ${message.content}`))
                                 .catch(console.error);
                         } else {
                             message.channel.send(newMessage.join(" "))
-                                .then(message => console.log('Sent message: ${message.content}'))
+                                .then(message => console.log(`Sent message: ${message.content}`))
                                 .catch(console.error);
                         }
 
@@ -83,7 +80,7 @@ client.on('message', message => {
                     if (sound == 'help') {
                         console.log('displaying help')
                         message.channel.send("Avaliable sounds to play:\n"+generateList())
-                            .then(message => console.log('Sent message: ${message.content}'))
+                            .then(message => console.log(`Sent message: ${message.content}`))
                             .catch(console.error);
                         break;
                     }
