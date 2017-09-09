@@ -80,6 +80,13 @@ client.on('message', message => {
             case 'jojo':
                 if (args.length > 0) {
                     sound = args[0];
+                    if (sound == 'help') {
+                        console.log('displaying help')
+                        message.channel.send("Avaliable sounds to play:\n"+generateList())
+                            .then(message => console.log('Sent message: ${message.content}'))
+                            .catch(console.error);
+                        break;
+                    }
                     if (sound in sounds) {
                         console.log('Playing sound "'+sound+'"');
                         playFile(message, sounds[sound]);
@@ -101,7 +108,9 @@ var sounds = {
 'oraora': 'oradarby.mp3',
 //'oraoraora': 'ora206.mp3',
 'zawarudo': 'zawarudo2.mp3',
+'theworld': 'zawarudo2.mp3',
 'zawarudoeffect': 'zawarudosound.mp3',
+'theworldeffect': 'zawarudosound.mp3',
 'baseball': 'ohbaseball.mp3',
 'selectyourcar': 'serectcar.mp3',
 'serectyourcar': 'serectcar.mp3',
@@ -126,13 +135,42 @@ var sounds = {
 'wryyyy': 'WRYYYY.wav',
 'sonochinosadame': 'Sono.wav',
 'killerqueen': 'killerqueen.wav',
-'dora': 'dora.wav'
+'dora': 'dora.wav',
 'dorarara': 'dora.wav'
+}
+
+function generateList() {
+    list = {}
+    for (var i = 0; i < Object.keys(sounds).length; i++) {
+        soundfile = sounds[Object.keys(sounds)[i]];
+        sound = Object.keys(sounds)[i];
+        if (soundfile in list){
+            list[soundfile].push(sound);
+        } else {
+            list[soundfile] = [sound];
+        }
+    }
+    liststr = "```"
+    for (var i = 0; i < Object.keys(list).length; i++) {
+        commands = list[Object.keys(list)[i]];
+        if (commands.length == 1) {
+            liststr+=commands[0]+'\n';
+        } else {
+            liststr+=commands[0]+' < '+commands.splice(1).join(", ")+' >\n';
+        }
+    }
+    liststr+= "```"
+    console.log(liststr);
+    return liststr;
 }
 
 function playFile(message, file) {
     isready = false;
     var voiceChannel = message.member.voiceChannel;
+    if (voiceChannel == undefined) {
+        console.log("User must be in a channel");
+        return;
+    }
     voiceChannel.join().then(connection => {
         const dispatcher = connection.playFile('./sounds/'+file);
         dispatcher.on("end", end => {voiceChannel.leave();isready = true;});
