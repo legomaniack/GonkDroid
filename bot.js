@@ -133,7 +133,10 @@ var sounds = {
 'sonochinosadame': 'Sono.wav',
 'killerqueen': 'killerqueen.wav',
 'dora': 'dora.wav',
-'dorarara': 'dora.wav'
+'dorarara': 'dora.wav',
+'roundabout': 'roundabout.mp3',
+'tbc': 'roundabout.mp3',
+'tobecontinued': 'roundabout.mp3'
 }
 
 function generateList() {
