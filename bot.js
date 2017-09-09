@@ -94,34 +94,47 @@ client.on('message', message => {
 });
 
 var sounds = {
-'yaredaze': 'yaredaze',
-'yareyaredaze': 'yaredaze',
-'muda': 'muda4',
-'ora': 'ora',
-'oraora': 'oradardy',
-//'oraoraora': 'ora206',
-'zawarudo': 'zawarudo2',
-'zawarudoeffect': 'zawarudosound',
-'baseball': 'ohbaseball',
-'selectyourcar': 'serectcar',
-'serectyourcar': 'serectcar',
-'car': 'serectcar',
-'konodioda': 'konodio',
-'roadrollerda': 'roadroller',
-'roadroller': 'roadroller',
-'omg': 'omg2',
-'no': 'no4',
-'yes': 'yes6',
-'killdaho': 'killdaho',
-'hermitpurple': 'hermit',
-'ohno': 'ohno2'
+'yaredaze': 'yaredaze.mp3',
+'yareyaredaze': 'yaredaze.mp3',
+'muda': 'muda4.mp3',
+'ora': 'ora.mp3',
+'oraora': 'oradarby.mp3',
+//'oraoraora': 'ora206.mp3',
+'zawarudo': 'zawarudo2.mp3',
+'zawarudoeffect': 'zawarudosound.mp3',
+'baseball': 'ohbaseball.mp3',
+'selectyourcar': 'serectcar.mp3',
+'serectyourcar': 'serectcar.mp3',
+'car': 'serectcar.mp3',
+'konodioda': 'konodio.mp3',
+'roadrollerda': 'roadroller.mp3',
+'roadroller': 'roadroller.mp3',
+'omg': 'omg2.mp3',
+'no': 'no4.mp3',
+'yes': 'yes6.mp3',
+'killdaho': 'killdaho.mp3',
+'hermitpurple': 'hermit.mp3',
+'ohno': 'ohno2.mp3',
+'jojo': 'joooojo.mp3',
+'joooojo': 'joooojo.mp3',
+'holyshit': 'holys.mp3',
+'goodbye': 'goodbye.mp3',
+'goodbyejojo': 'goodbye.mp3',
+'wry': 'WRYYYY.wav',
+'wryy': 'WRYYYY.wav',
+'wryyy': 'WRYYYY.wav',
+'wryyyy': 'WRYYYY.wav',
+'sonochinosadame': 'Sono.wav',
+'killerqueen': 'killerqueen.wav',
+'dora': 'dora.wav'
+'dorarara': 'dora.wav'
 }
 
 function playFile(message, file) {
     isready = false;
     var voiceChannel = message.member.voiceChannel;
     voiceChannel.join().then(connection => {
-        const dispatcher = connection.playFile('./sounds/'+file+'.mp3');
+        const dispatcher = connection.playFile('./sounds/'+file);
         dispatcher.on("end", end => {voiceChannel.leave();isready = true;});
     }).catch(err => console.log(err));
 }
