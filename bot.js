@@ -9,6 +9,7 @@ client.on('ready', () => {
 
 client.on('message', message => {
     if (isReady && message.content.substring(0, 1) == '!') {
+        console.log('Recieved command "'+message.content+'"');
         var args = message.content.substring(1).split(' ');
         var cmd = args[0].toLowerCase();
 
@@ -44,11 +45,8 @@ client.on('message', message => {
                     } else {
                         var r = Math.floor(Math.random()*words.length);
                         var word = words[r];
-                        console.log('Chosen word: '+word);
                         var t = Math.floor(Math.random()*(word.length-4));
-                        console.log('Position: '+t)
                         var newWord = word.substring(0,t);
-                        console.log(newWord);
                         for (var i = 0; i < 4; i++) {
                             character = word.charAt(i);
                             if (!isNaN(character * 1)){
@@ -62,18 +60,16 @@ client.on('message', message => {
                                 }
                             }
                         }
-                        console.log(newWord);
                         newWord += word.substring(t+4);
-                        console.log(newWord);
                         newMessage = args;
                         newMessage[args.indexOf(word)] = newWord;
                         if (cmd === 'gonktts') {
                             message.channel.send(newMessage.join(" "), {tts:true})
-                                .then(message => console.log(`Sent TTS message: ${message.content}`))
+                                .then(message => console.log('Sent TTS message: ${message.content}'))
                                 .catch(console.error);
                         } else {
                             message.channel.send(newMessage.join(" "))
-                                .then(message => console.log(`Sent message: ${message.content}`))
+                                .then(message => console.log('Sent message: ${message.content}'))
                                 .catch(console.error);
                         }
 
@@ -85,12 +81,14 @@ client.on('message', message => {
                 if (args.length > 0) {
                     sound = args[0];
                     if (sound in sounds) {
-                        isready = false;
-                        playFile(message, sounds[sound])
-                        isready = true;
+                        console.log('Playing sound "'+sound+'"');
+                        playFile(message, sounds[sound]);
                     }
                 }
             break;
+
+            default:
+                console.log('Invalid command');
         }
     }
 });
@@ -120,10 +118,11 @@ var sounds = {
 }
 
 function playFile(message, file) {
+    isready = false;
     var voiceChannel = message.member.voiceChannel;
-    voiceChannel.join().then(connection =>{
+    voiceChannel.join().then(connection => {
         const dispatcher = connection.playFile('./sounds/'+file+'.mp3');
-        dispatcher.on("end", end => {voiceChannel.leave();});
+        dispatcher.on("end", end => {voiceChannel.leave();isready = true;});
     }).catch(err => console.log(err));
 }
 
