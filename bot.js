@@ -75,21 +75,12 @@ client.on('message', message => {
             break;
 
             case 'jojo':
-                if (args.length > 0) {
-                    sound = args[0];
-                    if (sound == 'help') {
-                        console.log('displaying help')
-                        message.channel.send("Avaliable sounds to play:\n"+generateList())
-                            .then(message => console.log(`Sent message: ${message.content}`))
-                            .catch(console.error);
-                        break;
-                    }
-                    if (sound in sounds) {
-                        console.log('Playing sound "'+sound+'"');
-                        playFile(message, sounds[sound]);
-                    }
-                }
+                soundPlayer(args, jojo_sounds, 'jojo', message);
             break;
+
+            case 'animemes':
+            case 'anime':
+                soundPlayer(args, anime_sounds, 'anime', message);
 
             default:
                 console.log('Invalid command');
@@ -97,7 +88,7 @@ client.on('message', message => {
     }
 });
 
-var sounds = {
+var jojo_sounds = {
 'yaredaze': 'yaredaze.mp3',
 'yareyaredaze': 'yaredaze.mp3',
 'muda': 'muda4.mp3',
@@ -136,10 +127,22 @@ var sounds = {
 'dorarara': 'dora.wav',
 'roundabout': 'roundabout.mp3',
 'tbc': 'roundabout.mp3',
-'tobecontinued': 'roundabout.mp3'
+'tobecontinued': 'roundabout.mp3',
+'morioh': 'moriohcho.wav',
+'moriohcho': 'moriohcho.wav',
+'radio': 'moriohcho.wav'
 }
 
-function generateList() {
+var anime_sounds = {
+'stupid': 'stupid.mp3',
+'whatareyoustupid': 'stupid.mp3',
+'tirofinale': 'tirofinale.wav'
+'onepunch': 'punch.wav'
+'punch': 'punch.wav'
+'opm': 'opmtheme.wav'
+}
+
+function generateList(sounds) {
     list = {}
     for (var i = 0; i < Object.keys(sounds).length; i++) {
         soundfile = sounds[Object.keys(sounds)[i]];
@@ -162,6 +165,23 @@ function generateList() {
     liststr+= "```"
     console.log(liststr);
     return liststr;
+}
+
+function soundPlayer(args, sounds, folder, message) {
+    if (args.length > 0) {
+        sound = args[0];
+        if (sound == 'help') {
+            console.log('displaying help')
+            message.channel.send("Avaliable sounds to play:\n"+generateList(sounds))
+                .then(message => console.log(`Sent message: ${message.content}`))
+                .catch(console.error);
+            break;
+        }
+        if (sound in sounds) {
+            console.log('Playing sound "'+sound+'"');
+            playFile(message, folder+sounds[sound]);
+        }
+    }
 }
 
 function playFile(message, file) {
