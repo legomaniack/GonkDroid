@@ -83,6 +83,11 @@ client.on('message', message => {
                 soundPlayer(args, anime_sounds, 'anime', message);
             break;
 
+            case 'hots':
+            case 'heroes':
+                soundPlayer(args, hots_sounds, 'hots', message);
+            break;
+
             default:
                 console.log('Invalid command');
         }
@@ -143,6 +148,12 @@ var anime_sounds = {
 'opm': 'opmtheme.wav'
 }
 
+var hots_sounds = {
+'sobeit': 'sobeit.wav',
+'hatred': 'hatred.ogx',
+'notprepared': 'prepared.ogx'
+}
+
 function generateList(sounds) {
     list = {}
     for (var i = 0; i < Object.keys(sounds).length; i++) {
@@ -179,8 +190,8 @@ function soundPlayer(args, sounds, folder, message) {
             return;
         }
         if (sound in sounds) {
-            console.log('Playing sound "'+sound+'"');
-            playFile(message, folder+sounds[sound]);
+            console.log('Playing sound "'+folder+'/'+sounds[sound]+'"');
+            playFile(message, folder+'/'+sounds[sound]);
         }
     }
 }
