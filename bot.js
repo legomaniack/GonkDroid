@@ -81,6 +81,7 @@ client.on('message', message => {
             case 'animemes':
             case 'anime':
                 soundPlayer(args, anime_sounds, 'anime', message);
+            break;
 
             default:
                 console.log('Invalid command');
@@ -136,9 +137,9 @@ var jojo_sounds = {
 var anime_sounds = {
 'stupid': 'stupid.mp3',
 'whatareyoustupid': 'stupid.mp3',
-'tirofinale': 'tirofinale.wav'
-'onepunch': 'punch.wav'
-'punch': 'punch.wav'
+'tirofinale': 'tirofinale.wav',
+'onepunch': 'punch.wav',
+'punch': 'punch.wav',
 'opm': 'opmtheme.wav'
 }
 
@@ -175,7 +176,7 @@ function soundPlayer(args, sounds, folder, message) {
             message.channel.send("Avaliable sounds to play:\n"+generateList(sounds))
                 .then(message => console.log(`Sent message: ${message.content}`))
                 .catch(console.error);
-            break;
+            return;
         }
         if (sound in sounds) {
             console.log('Playing sound "'+sound+'"');
