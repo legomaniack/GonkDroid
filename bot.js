@@ -145,7 +145,11 @@ var anime_sounds = {
 'tirofinale': 'tirofinale.wav',
 'onepunch': 'punch.wav',
 'punch': 'punch.wav',
-'opm': 'opmtheme.wav'
+'opm': 'opmtheme.wav',
+'nani': 'nani.mp3',
+'alreadydead': 'omae-wa-mou-shindeiru.mp3',
+'omae': 'omae-wa-mou-shindeiru.mp3',
+'omaewamoushindeiru': 'omae-wa-mou-shindeiru.mp3'
 }
 
 var hots_sounds = {
