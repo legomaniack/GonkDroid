@@ -1,7 +1,14 @@
 const auth = require('./auth.json');
 const Discord = require('discord.js');
 const client = new Discord.Client();
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
 var isReady = true;
+var lastChannel = null;
+var lastVoice = null;
 
 client.on('ready', () => {
     console.log("Ready!");
@@ -10,6 +17,7 @@ client.on('ready', () => {
 client.on('message', message => {
     if (isReady && message.content.substring(0, 1) == '!') {
         console.log('Recieved command "'+message.content+'"');
+        lastChannel = message.channel;
         var args = message.content.substring(1).split(' ');
         var cmd = args[0].toLowerCase();
 
@@ -195,25 +203,66 @@ function soundPlayer(args, sounds, folder, message) {
         }
         if (sound in sounds) {
             console.log('Playing sound "'+folder+'/'+sounds[sound]+'"');
-            playFile(message, folder+'/'+sounds[sound]);
+            playFile(message.member.voiceChannel, './sounds/'+folder+'/'+sounds[sound]);
         }
     }
 }
 
-function playFile(message, file) {
+function playFile(voiceChannel, file) {
     isready = false;
-    var voiceChannel = message.member.voiceChannel;
     if (voiceChannel == undefined) {
         console.log("User must be in a channel");
         return;
     }
+    lastVoice = voiceChannel;
     voiceChannel.join().then(connection => {
-        const dispatcher = connection.playFile('./sounds/'+file);
+        const dispatcher = connection.playFile(file);
         dispatcher.on("end", end => {voiceChannel.leave();isready = true;});
     }).catch(err => console.log(err));
 }
 
-process.stdin.resume();//so the program will not close instantly
+rl.on('line', (input) => {
+    console.log(`Received: ${input}`);
+
+
+        var args = input.split(' ');
+        var cmd = args[0].toLowerCase();
+
+        args = args.splice(1);
+        switch(cmd) {
+            case 'say':
+                if (lastChannel != null) {
+                    lastChannel.send(args.join(" "))
+                        .then(message => console.log(`Sent message: ${message.content}`))
+                        .catch(console.error);
+                }
+            break;
+            case 'tts':
+                if (lastChannel != null) {
+                    lastChannel.send(args.join(" "), {tts:true})
+                        .then(message => console.log(`Sent message: ${message.content}`))
+                        .catch(console.error);
+                }
+            break;
+            case 'play':
+                if (lastVoice != null) {
+                    console.log(args[0]);
+                    playFile(lastVoice, args[0]);
+                }
+            break;
+            case 'wtf':
+                var lineReader = require('readline').createInterface({
+                    input: require('fs').createReadStream('./gonk.txt')
+                });
+                lineReader.on('line', function (line) {
+                    lastChannel.send(line, {tts:true})
+                        .then(message => console.log(`Sent message: ${message.content}`))
+                        .catch(console.error);
+                });
+        }
+});
+
+process.stdin.resume();// Black box so the program will not close instantly
 
 function exitHandler(options, err) {
     if (options.cleanup) {
@@ -223,6 +272,8 @@ function exitHandler(options, err) {
     if (err) console.log(err.stack);
     if (options.exit) process.exit();
 }
+
+
 
 //do something when app is closing
 process.on('exit', exitHandler.bind(null,{cleanup:true}));
