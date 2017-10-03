@@ -198,7 +198,7 @@ function generateList(sounds) {
             list[soundfile] = [sound];
         }
     }
-    liststr = "```"
+    liststr = "```\n"
     for (var i = 0; i < Object.keys(list).length; i++) {
         commands = list[Object.keys(list)[i]];
         if (commands.length == 1) {
