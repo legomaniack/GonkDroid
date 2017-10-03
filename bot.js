@@ -157,13 +157,34 @@ var anime_sounds = {
 'nani': 'nani.mp3',
 'alreadydead': 'omae-wa-mou-shindeiru.mp3',
 'omae': 'omae-wa-mou-shindeiru.mp3',
-'omaewamoushindeiru': 'omae-wa-mou-shindeiru.mp3'
+'omaewamoushindeiru': 'omae-wa-mou-shindeiru.mp3',
+'tuturu': 'tuturu.mp3'
 }
 
 var hots_sounds = {
 'sobeit': 'sobeit.wav',
 'hatred': 'hatred.ogx',
-'notprepared': 'prepared.ogx'
+'notprepared': 'prepared.ogx',
+'stukovshove': 'StukovBase_Ultimate1UsedEnemy00.mp3',
+'stukovhadenough': 'StukovBase_Ultimate1Used01.mp3',
+'stukovpermission': 'StukovBase_IntroResponse_Dismissive00.mp3',
+'stukovdegenerate': 'StukovBase_IntroResponse_Degenerate00.mp3',
+'stukovfire': 'StukovBase_IntroResponse_Angry00.mp3',
+'stukovgoodtoseeyou': 'StukovBase_IntroQuestion_Positive00.mp3',
+'stukovsuffer': 'StukovBase_Attack02.mp3',
+'stukovwillnotdo': 'StukovBase_AI_Uhoh01.mp3',
+'nothingpersonal': 'Nova_Kill00.mp3',
+'nothingpersonnel': 'Nova_Kill00.mp3',
+'bwlimbfromlimb': 'Brightwing_Pissed11.mp3',
+'bwhappy': 'Brightwing_Pissed11.mp3',
+'bweasy': 'Brightwing_KillSpreeEnd00.mp3',
+'bwsuffer': 'Brightwing_Kill03.mp3',
+'bwscaryvoice': 'Brightwing_IntroResponse_Abathur00.mp3',
+'bwhurt': 'Brightwing_Attack06.mp3',
+'bwinsides': 'Brightwing_AI_Attack02.mp3',
+'byfirebepurged': 'RagnarosBase_Ultimate2Used00.mp3',
+'byfire': 'RagnarosBase_Ultimate2Used00.mp3',
+'dieinsects': 'RagnarosBase_Ultimate1Used02.mp3'
 }
 
 function generateList(sounds) {
