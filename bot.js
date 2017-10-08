@@ -144,7 +144,9 @@ var jojo_sounds = {
 'tobecontinued': 'roundabout.mp3',
 'morioh': 'moriohcho.wav',
 'moriohcho': 'moriohcho.wav',
-'radio': 'moriohcho.wav'
+'radio': 'moriohcho.wav',
+'doyouunderstand': 'do-you-understnad.mp3',
+'understand': 'do-you-understnad.mp3'
 }
 
 var anime_sounds = {
@@ -158,23 +160,50 @@ var anime_sounds = {
 'alreadydead': 'omae-wa-mou-shindeiru.mp3',
 'omae': 'omae-wa-mou-shindeiru.mp3',
 'omaewamoushindeiru': 'omae-wa-mou-shindeiru.mp3',
-'tuturu': 'tuturu.mp3'
+'tutturu': 'tuturu.mp3'
 }
 
 var hots_sounds = {
-'sobeit': 'sobeit.wav',
+// Misc
+'dieinsects': 'RagnarosBase_Ultimate1Used02.mp3',
 'hatred': 'hatred.ogx',
 'notprepared': 'prepared.ogx',
+'nothingpersonal': 'Nova_Kill00.mp3',
+'nothingpersonnel': 'Nova_Kill00.mp3',
+'byfirebepurged': 'RagnarosBase_Ultimate2Used00.mp3',
+'byfire': 'RagnarosBase_Ultimate2Used00.mp3',
+'walkingcorpse': 'ValeeraBase_IntroResponse_Scourge00.mp3',
+
+// Stukov
+'sobeit': 'sobeit.wav',
 'stukovshove': 'StukovBase_Ultimate1UsedEnemy00.mp3',
 'stukovhadenough': 'StukovBase_Ultimate1Used01.mp3',
+'stukovmonster': 'StukovBase_Ultimate2Used02.mp3',
 'stukovpermission': 'StukovBase_IntroResponse_Dismissive00.mp3',
 'stukovdegenerate': 'StukovBase_IntroResponse_Degenerate00.mp3',
 'stukovfire': 'StukovBase_IntroResponse_Angry00.mp3',
 'stukovgoodtoseeyou': 'StukovBase_IntroQuestion_Positive00.mp3',
 'stukovsuffer': 'StukovBase_Attack02.mp3',
 'stukovwillnotdo': 'StukovBase_AI_Uhoh01.mp3',
-'nothingpersonal': 'Nova_Kill00.mp3',
-'nothingpersonnel': 'Nova_Kill00.mp3',
+
+'stushove': 'StukovBase_Ultimate1UsedEnemy00.mp3',
+'stuenough': 'StukovBase_Ultimate1Used01.mp3',
+'stumonster': 'StukovBase_Ultimate2Used02.mp3',
+'stuperm': 'StukovBase_IntroResponse_Dismissive00.mp3',
+'studegen': 'StukovBase_IntroResponse_Degenerate00.mp3',
+'stufire': 'StukovBase_IntroResponse_Angry00.mp3',
+'stugood': 'StukovBase_IntroQuestion_Positive00.mp3',
+'stusuffer': 'StukovBase_Attack02.mp3',
+'stuwillnot': 'StukovBase_AI_Uhoh01.mp3',
+
+// Brightwing
+'brightwinglimbfromlimb': 'Brightwing_Pissed11.mp3',
+'brightwingeasytokill': 'Brightwing_KillSpreeEnd00.mp3',
+'brightwingsuffer': 'Brightwing_Kill03.mp3',
+'brightwingscaryvoice': 'Brightwing_IntroResponse_Abathur00.mp3',
+'brightwinghurtuntilyoudie': 'Brightwing_Attack06.mp3',
+'brightwinginsides': 'Brightwing_AI_Attack02.mp3',
+
 'bwlimbfromlimb': 'Brightwing_Pissed11.mp3',
 'bwhappy': 'Brightwing_Pissed11.mp3',
 'bweasy': 'Brightwing_KillSpreeEnd00.mp3',
@@ -182,12 +211,44 @@ var hots_sounds = {
 'bwscaryvoice': 'Brightwing_IntroResponse_Abathur00.mp3',
 'bwhurt': 'Brightwing_Attack06.mp3',
 'bwinsides': 'Brightwing_AI_Attack02.mp3',
-'byfirebepurged': 'RagnarosBase_Ultimate2Used00.mp3',
-'byfire': 'RagnarosBase_Ultimate2Used00.mp3',
-'dieinsects': 'RagnarosBase_Ultimate1Used02.mp3'
+
+// Alarak
+'alarakvictory': 'AlarakBase_Celebrate00.mp3',
+'alarakselection': 'AlarakBase_IntroResponse_Bizarre00.mp3',
+'alarakwit': 'AlarakBase_IntroResponse_Mocking00.mp3',
+'alarakwaste': 'AlarakBase_IntroResponse_Negative00.mp3',
+'alarakorificeflap': 'AlarakBase_IntroResponse_Terran00.mp3',
+'alarakdanger': 'AlarakBase_Ping_Danger00.mp3',
+'alarakyoucansee': 'AlarakBase_Ping_KillHero00.mp3',
+'alarakfreetoplay': 'AlarakBase_Pissed10.mp3',
+'alaraknotgood': 'AlarakBase_RepeatKill00.mp3',
+'alarakohitsyou': 'AlarakBase_RepeatKillMulti00.mp3',
+'alarakconsistent': 'AlarakBase_RepeatKillMulti01.mp3',
+'alarakreturned': 'AlarakBase_Revive01.mp3',
+'alaraktiresome': 'AlarakBase_Social_Goodbye00.mp3',
+'alarakdone': 'AlarakBase_Social_Goodbye01.mp3',
+'alarakyoumayspeak': 'AlarakBase_Social_Hello00.mp3',
+'alarakunworthy': 'AlarakBase_TeamKilled00.mp3',
+
+'alavictory': 'AlarakBase_Celebrate00.mp3',
+'alaselect': 'AlarakBase_IntroResponse_Bizarre00.mp3',
+'alawit': 'AlarakBase_IntroResponse_Mocking00.mp3',
+'alawaste': 'AlarakBase_IntroResponse_Negative00.mp3',
+'alaflap': 'AlarakBase_IntroResponse_Terran00.mp3',
+'aladanger': 'AlarakBase_Ping_Danger00.mp3',
+'alasee': 'AlarakBase_Ping_KillHero00.mp3',
+'alaftp': 'AlarakBase_Pissed10.mp3',
+'alanotgood': 'AlarakBase_RepeatKill00.mp3',
+'alaitsyou': 'AlarakBase_RepeatKillMulti00.mp3',
+'alaconsistent': 'AlarakBase_RepeatKillMulti01.mp3',
+'alareturned': 'AlarakBase_Revive01.mp3',
+'alatiresome': 'AlarakBase_Social_Goodbye00.mp3',
+'aladone': 'AlarakBase_Social_Goodbye01.mp3',
+'alamayspeak': 'AlarakBase_Social_Hello00.mp3',
+'alaunworthy': 'AlarakBase_TeamKilled00.mp3'
 }
 
-function generateList(sounds) {
+function generateList(sounds, search) {
     list = {}
     for (var i = 0; i < Object.keys(sounds).length; i++) {
         soundfile = sounds[Object.keys(sounds)[i]];
@@ -201,10 +262,15 @@ function generateList(sounds) {
     liststr = "```\n"
     for (var i = 0; i < Object.keys(list).length; i++) {
         commands = list[Object.keys(list)[i]];
-        if (commands.length == 1) {
-            liststr+=commands[0]+'\n';
-        } else {
-            liststr+=commands[0]+' < '+commands.splice(1).join(", ")+' >\n';
+        mushed = commands.join(' ');
+        console.log(search, typeof search);
+        for (var j = 0; j < commands.length; j++)
+        if(typeof search === "undefined" || (mushed || '').indexOf(search) > -1) {
+            if (commands.length == 1) {
+                liststr+=commands[0]+'\n';
+            } else {
+                liststr+=commands[0]+' < '+commands.splice(1).join(", ")+' >\n';
+            }
         }
     }
     liststr+= "```"
@@ -217,7 +283,12 @@ function soundPlayer(args, sounds, folder, message) {
         sound = args[0];
         if (sound == 'help') {
             console.log('displaying help')
-            message.channel.send("Avaliable sounds to play:\n"+generateList(sounds))
+            if (args.length > 2) {
+                search = undefined;
+            } else {
+                search = args[1];
+            }
+            message.channel.send("Avaliable sounds to play:\n"+generateList(sounds, search))
                 .then(message => console.log(`Sent message: ${message.content}`))
                 .catch(console.error);
             return;
