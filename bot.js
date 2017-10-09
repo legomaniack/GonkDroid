@@ -145,8 +145,8 @@ var jojo_sounds = {
 'morioh': 'moriohcho.wav',
 'moriohcho': 'moriohcho.wav',
 'radio': 'moriohcho.wav',
-'doyouunderstand': 'do-you-understnad.mp3',
-'understand': 'do-you-understnad.mp3'
+'doyouunderstand': 'do-you-understand.mp3',
+'understand': 'do-you-understand.mp3'
 }
 
 var anime_sounds = {
