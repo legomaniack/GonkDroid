@@ -229,6 +229,14 @@ var hots_sounds = {
 'alarakdone': 'AlarakBase_Social_Goodbye01.mp3',
 'alarakyoumayspeak': 'AlarakBase_Social_Hello00.mp3',
 'alarakunworthy': 'AlarakBase_TeamKilled00.mp3',
+'alarakstopcrawlingback': 'AlarakBase_RepeatKillMulti02.mp3',
+'alarakacceptable': 'AlarakBase_Spec03.mp3',
+'alarakcurioschoice': 'AlarakBase_Spec04.mp3',
+'alarakexpected': 'AlarakBase_UI_ExLocked00.mp3',
+'alarakfinally': 'AlarakBase_UI_Lockin00.mp3',
+'alarakchain': 'AlarakBase_Yes04.mp3',
+'alarakwillit': 'AlarakBase_Yes00.mp3',
+'alarakpredictable': 'AlarakBase_Yes06.mp3',
 
 'alavictory': 'AlarakBase_Celebrate00.mp3',
 'alaselect': 'AlarakBase_IntroResponse_Bizarre00.mp3',
@@ -245,7 +253,15 @@ var hots_sounds = {
 'alatiresome': 'AlarakBase_Social_Goodbye00.mp3',
 'aladone': 'AlarakBase_Social_Goodbye01.mp3',
 'alamayspeak': 'AlarakBase_Social_Hello00.mp3',
-'alaunworthy': 'AlarakBase_TeamKilled00.mp3'
+'alaunworthy': 'AlarakBase_TeamKilled00.mp3',
+'alastop': 'AlarakBase_RepeatKillMulti02.mp3',
+'alaaccept': 'AlarakBase_Spec03.mp3',
+'alachoice': 'AlarakBase_Spec04.mp3',
+'alaexpect': 'AlarakBase_UI_ExLocked00.mp3',
+'alafinally': 'AlarakBase_UI_Lockin00.mp3',
+'alachain': 'AlarakBase_Yes04.mp3',
+'alawillit': 'AlarakBase_Yes00.mp3',
+'alapredict': 'AlarakBase_Yes06.mp3'
 }
 
 function generateList(sounds, search) {
