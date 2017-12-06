@@ -160,7 +160,8 @@ var anime_sounds = {
 'alreadydead': 'omae-wa-mou-shindeiru.mp3',
 'omae': 'omae-wa-mou-shindeiru.mp3',
 'omaewamoushindeiru': 'omae-wa-mou-shindeiru.mp3',
-'tutturu': 'tuturu.mp3'
+'tutturu': 'tuturu.mp3',
+'fusrodah': 'fusrodah.wav'
 }
 
 var hots_sounds = {
@@ -173,6 +174,8 @@ var hots_sounds = {
 'byfirebepurged': 'RagnarosBase_Ultimate2Used00.mp3',
 'byfire': 'RagnarosBase_Ultimate2Used00.mp3',
 'walkingcorpse': 'ValeeraBase_IntroResponse_Scourge00.mp3',
+'forazeroth': 'For_Azeroth.mp3',
+'leyline': 'LeyLine.mp3',
 
 // Stukov
 'sobeit': 'sobeit.wav',
