@@ -81,6 +81,9 @@ client.on('message', message => {
                     }
                 }
             break;
+            case: 'roll':
+                diceRoller(args, message);
+            break;
 
             case 'jojo':
                 soundPlayer(args, jojo_sounds, 'jojo', message);
@@ -330,6 +333,26 @@ function playFile(voiceChannel, file) {
         const dispatcher = connection.playFile(file);
         dispatcher.on("end", end => {voiceChannel.leave();isready = true;});
     }).catch(err => console.log(err));
+}
+
+function rollNumber(n, dice) {
+    if (n <= 0 || dice <= 0 ) return 0;
+    result = 0;
+    for (var i = 0; i < n; i++) {
+        result += Math.floor(Math.random() * dice) + 1;
+    }
+    return result;
+}
+
+function roll(args, message) {
+    if (args.length > 0)
+        arg = args[0];
+    } else {
+        console.log('Default roll: 1d20');
+        message.channel.send(rollNumber(1, 20))
+            .then(message => console.log(`Sent message: ${message.content}`))
+            .catch(console.error);
+    }
 }
 
 rl.on('line', (input) => {
