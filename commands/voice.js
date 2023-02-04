@@ -27,6 +27,23 @@ module.exports = {
 				adapterCreator: interaction.guild.voiceAdapterCreator,
 			});
 			
+			const timer = setInterval(() => {
+				const num_members = channel?.members?.size ?? 1;
+				console.log(`Number of members in channel: ${num_members}`)
+				if (connection == undefined || num_members == 1) {
+					try {
+						connection?.destroy();
+					} catch (error) {
+						console.log(error);
+					}
+					if (timer) clearInterval(timer);
+				}
+			}, 30000);
+			
+			connection.on(VoiceConnectionStatus.Destroyed, async (oldState, newState) => {
+				if (timer) clearInterval(timer);
+			});
+			
 			connection.on(VoiceConnectionStatus.Disconnected, async (oldState, newState) => {
 				try {
 					await Promise.race([
@@ -39,15 +56,6 @@ module.exports = {
 					connection.destroy();
 				}
 			});
-			
-			const timer = setInterval(() => {
-				const num_members = channel?.members?.size ?? 1;
-				console.log(`Number of members in channel: ${num_members}`)
-				if (connection == undefined || num_members == 1) {
-					connection?.destroy();
-					clearInterval(timer);
-				}
-			}, 30000);
 
 			try {
 				await entersState(connection, VoiceConnectionStatus.Ready, 5_000);
