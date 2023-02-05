@@ -1,15 +1,23 @@
 const { SlashCommandBuilder } = require('discord.js');
+const { createReadStream } = require('node:fs');
 const { joinVoiceChannel, getVoiceConnection, createAudioPlayer, createAudioResource, AudioPlayerStatus, entersState } = require('@discordjs/voice');
 const path = require('node:path');
 
-const sound_lists = require('../sound_list.js')
+const sound_lists = require('../sounds/sound_list.js')
 const soundsPath = path.join(__dirname, '../sounds');
+// const sound_resourses = new Map();
 
 let main_command = new SlashCommandBuilder()
 		.setName('play')
 		.setDescription('Play an audio clip!')
 		
 for (const command in sound_lists) {
+	// sound_resourses.set(command, new Map());
+	// for (const [clip, sound_file_name] of sound_lists[command].entries()) {
+	// 	const sound_file = path.join(soundsPath, command, sound_file_name);
+	// 	sound_resourses[command].set(clip, createAudioResource(createReadStream(sound_file)))
+	// }
+	
 	main_command = main_command.addSubcommand(subcommand => subcommand
 						.setName(command)
 						.setDescription(`Play a "${command}" audio clip`)
@@ -29,7 +37,7 @@ module.exports = {
 		const clip = interaction.options.getString('clip');
 		if (Object.keys(sound_lists[category]).includes(clip)){
 			const sound_file_name = sound_lists[category][clip];
-			const sound_file = path.join(soundsPath, category, sound_file_name)
+			const sound_file = path.join(soundsPath, category, sound_file_name);
 			
 			// Check for existing connection
 			let connection = getVoiceConnection(interaction.guild.id);
@@ -60,7 +68,7 @@ module.exports = {
 				console.log(`Audio player transitioned from ${oldState.status} to ${newState.status}`);
 			});
 			
-			const resource = createAudioResource(sound_file);
+			const resource = createAudioResource(createReadStream(sound_file));
 
 			// console.log(sound_file);
 			// console.log(resource);
