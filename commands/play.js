@@ -48,17 +48,10 @@ module.exports = {
 				
 			}
 			
-			// Cleanup
-			player.on(AudioPlayerStatus.Idle, () => {
-				player.stop();
-				
-				if (!preexisting) {
-					connection.destroy();
-				}
-			});
 			
 			// Play clip to connection
 			const player = createAudioPlayer();
+
 			player.on('error', error => {
 				console.error('Error:', error.message, 'with track', error.resource.metadata.title);
 			});
@@ -74,6 +67,15 @@ module.exports = {
 
 			player.play(resource);
 			connection.subscribe(player);
+
+			// Cleanup
+			player.on(AudioPlayerStatus.Idle, () => {
+				player.stop();
+				
+				if (!preexisting) {
+					connection.destroy();
+				}
+			});
 			
 			try {
 				await entersState(player, AudioPlayerStatus.Playing, 5_000);
