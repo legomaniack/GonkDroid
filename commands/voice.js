@@ -1,4 +1,4 @@
-const { SlashCommandBuilder} = require('discord.js');
+const { SlashCommandBuilder, CommandInteractionOptionResolver} = require('discord.js');
 const { joinVoiceChannel, getVoiceConnection, VoiceConnectionStatus, entersState } = require('@discordjs/voice');
 
 module.exports = {
@@ -26,12 +26,17 @@ module.exports = {
 				guildId: interaction.guild.id,
 				adapterCreator: interaction.guild.voiceAdapterCreator,
 			});
+
+			connection.on('stateChange', (oldState, newState) => {
+				console.log(`Connection transitioned from ${oldState.status} to ${newState.status}`);
+			});
 			
 			const timer = setInterval(() => {
-				const num_members = channel?.members?.size ?? 1;
+				const num_members = interaction.guild.voiceStates.cache.get(interaction.client.user.id)?.channel?.members?.size ?? 1;
 				console.log(`Number of members in channel: ${num_members}`)
-				if (connection == undefined || num_members == 1) {
+				if (connection == undefined || num_members <= 1) {
 					try {
+						console.log('destroying connection');
 						connection?.destroy();
 					} catch (error) {
 						console.log(error);
@@ -61,8 +66,8 @@ module.exports = {
 				await entersState(connection, VoiceConnectionStatus.Ready, 5_000);
 				await interaction.reply({ content: `Joined ${channel.name}!`, ephemeral: true });
 			} catch (error) {
-				await interaction.reply({ content: `Error joining ${channel.name}!`, ephemeral: true });
 				console.log(error);
+				await interaction.reply({ content: `Error joining ${channel.name}!`, ephemeral: true });
 			}
 
 		} else if (subcommand  == 'leave') {
