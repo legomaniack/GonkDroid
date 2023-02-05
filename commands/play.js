@@ -48,14 +48,29 @@ module.exports = {
 				
 			}
 			
-			
+			// Cleanup
+			player.on(AudioPlayerStatus.Idle, () => {
+				player.stop();
+				
+				if (!preexisting) {
+					connection.destroy();
+				}
+			});
 			
 			// Play clip to connection
 			const player = createAudioPlayer();
+			player.on('error', error => {
+				console.error('Error:', error.message, 'with track', error.resource.metadata.title);
+			});
+
+			player.on('stateChange', (oldState, newState) => {
+				console.log(`Audio player transitioned from ${oldState.status} to ${newState.status}`);
+			});
+			
 			const resource = createAudioResource(sound_file);
 
-			console.log(sound_file);
-			console.log(resource);
+			// console.log(sound_file);
+			// console.log(resource);
 
 			player.play(resource);
 			connection.subscribe(player);
@@ -68,15 +83,6 @@ module.exports = {
 				console.log(error);
 			}
 			
-			// Cleanup
-			player.on(AudioPlayerStatus.Idle, () => {
-				player.stop();
-				
-				if (!preexisting) {
-					connection.destroy();
-				}
-			});
-
 		} else {
 			await interaction.reply({ content: `Sound clip ${clip} not found in category ${category}!`, ephemeral: true });
 		}
