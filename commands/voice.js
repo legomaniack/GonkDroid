@@ -16,6 +16,7 @@ module.exports = {
 	async execute(interaction) {
 		const subcommand = interaction.options.getSubcommand(true);
 		if (subcommand == 'join') {
+			interaction.deferReply();
 			const channel = interaction?.member?.voice?.channel;
 			if (channel == undefined) {
 				await interaction.reply({ content: `You must be in a voice channel!`, ephemeral: true });
@@ -64,10 +65,10 @@ module.exports = {
 
 			try {
 				await entersState(connection, VoiceConnectionStatus.Ready, 5_000);
-				await interaction.reply({ content: `Joined ${channel.name}!`, ephemeral: true });
+				await interaction.editReply({ content: `Joined ${channel.name}!`, ephemeral: true });
 			} catch (error) {
 				console.log(error);
-				await interaction.reply({ content: `Error joining ${channel.name}!`, ephemeral: true });
+				await interaction.editReply({ content: `Error joining ${channel.name}!`, ephemeral: true });
 			}
 
 		} else if (subcommand  == 'leave') {
