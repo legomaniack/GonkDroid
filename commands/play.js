@@ -61,7 +61,7 @@ module.exports = {
 			const player = createAudioPlayer();
 
 			player.on('error', error => {
-				console.error('Error:', error.message, 'with track', error.resource.metadata.title);
+				console.error('Error:', error);
 			});
 
 			player.on('stateChange', (oldState, newState) => {
