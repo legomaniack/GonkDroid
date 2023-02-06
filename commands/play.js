@@ -68,7 +68,7 @@ module.exports = {
 				console.log(`Audio player transitioned from ${oldState.status} to ${newState.status}`);
 			});
 			
-			const resource = createAudioResource(createReadStream(sound_file));
+			const resource = createAudioResource(createReadStream(sound_file), { type: 'ogg/opus' });
 
 			// console.log(sound_file);
 			// console.log(resource);
