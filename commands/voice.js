@@ -32,19 +32,7 @@ module.exports = {
 				console.log(`Connection transitioned from ${oldState.status} to ${newState.status}`);
 			});
 			
-			const timer = setInterval(() => {
-				const num_members = interaction.guild.voiceStates.cache.get(interaction.client.user.id)?.channel?.members?.size ?? 1;
-				console.log(`Number of members in channel: ${num_members}`)
-				if (connection == undefined || num_members <= 1) {
-					try {
-						console.log('destroying connection');
-						connection?.destroy();
-					} catch (error) {
-						console.log(error);
-					}
-					if (timer) clearInterval(timer);
-				}
-			}, 30000);
+			
 			
 			connection.on(VoiceConnectionStatus.Destroyed, async (oldState, newState) => {
 				if (timer) clearInterval(timer);
@@ -66,6 +54,20 @@ module.exports = {
 			try {
 				await entersState(connection, VoiceConnectionStatus.Ready, 5_000);
 				await interaction.editReply({ content: `Joined ${channel.name}!`, ephemeral: true });
+				
+				const timer = setInterval(() => {
+					const num_members = interaction.guild.voiceStates.cache.get(interaction.client.user.id)?.channel?.members?.size ?? 1;
+					console.log(`Number of members in channel: ${num_members}`)
+					if (connection == undefined || num_members <= 1) {
+						try {
+							console.log('destroying connection');
+							connection?.destroy();
+						} catch (error) {
+							console.log(error);
+						}
+						if (timer) clearInterval(timer);
+					}
+				}, 30000);
 			} catch (error) {
 				console.log(error);
 				await interaction.editReply({ content: `Error joining ${channel.name}!`, ephemeral: true });
