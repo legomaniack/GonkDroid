@@ -56,7 +56,7 @@ module.exports = {
 				
 			}
 			
-			
+			connection.on('debug', console.log);
 			// Play clip to connection
 			const player = createAudioPlayer();
 
