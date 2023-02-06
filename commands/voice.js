@@ -32,6 +32,8 @@ module.exports = {
 				console.log(`Connection transitioned from ${oldState.status} to ${newState.status}`);
 			});
 			
+			interaction.client.on('debug', console.log);
+			connection.on('debug', console.log);
 			
 			
 			connection.on(VoiceConnectionStatus.Destroyed, async (oldState, newState) => {
@@ -52,7 +54,7 @@ module.exports = {
 			});
 
 			try {
-				await entersState(connection, VoiceConnectionStatus.Ready, 5_000);
+				await entersState(connection, VoiceConnectionStatus.Ready, 10_000);
 				await interaction.editReply({ content: `Joined ${channel.name}!`, ephemeral: true });
 
 				const timer = setInterval(() => {
